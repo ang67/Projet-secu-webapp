@@ -8,9 +8,9 @@ L’application est un forum de discussion informatique. qui offre la possibilit
 
 **Pré-requis:**
 
-    - installer [WampServer](https://www.wampserver.com/)
-    - mettre tous les 3 repertoires (siteattaquant, myforum et myforumsecu) à la racine du rempertoire www de wamp (e.g sur windows: `C:\wamp64\www`)
-    - importer la base de données `myforum.sql` dans phpmyadmin
+   - installer [WampServer](https://www.wampserver.com/)
+   - mettre tous les 3 repertoires (siteattaquant, myforum et myforumsecu) à la racine du rempertoire www de wamp (e.g sur windows: `C:\wamp64\www`)
+   - importer la base de données `myforum.sql` dans phpmyadmin
 ## Mise en évidence d’une faille d’injection SQL
 
 Pour contribuer au forum c’est-à-dire réponndre créer un sujet, ecrire un message, l’on a besoin de se connecter avec un pseudo et un mot de mot de passe. 
