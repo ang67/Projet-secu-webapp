@@ -1,0 +1,3 @@
+
+$cookiepseudo=toto; pass=toto; PHPSESSID=hsrrqei3m4ini59reauko6h57c
+pseudo=rio; pass=rioas; PHPSESSID=hsrrqei3m4ini59reauko6h57c
