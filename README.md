@@ -6,7 +6,7 @@ L’application est un forum de discussion informatique. qui offre la possibilit
 
 **Outils**: PHP, HTML, CSS, MySQL, PHPMYADMIN
 
-**Pré-requis:**
+**Prérequis:**
 
    - installer [WampServer](https://www.wampserver.com/)
    - mettre tous les 3 repertoires (siteattaquant, myforum et myforumsecu) à la racine du rempertoire www de wamp (e.g sur windows: `C:\wamp64\www`)
