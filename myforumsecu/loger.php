@@ -29,8 +29,8 @@ require("inc/connexPDO.inc.php");
 				
 				//creation de cookies
 				if ($_POST["remember"] == "true") {
-					setcookie('pseudo', $pseudo, time() + 365*24*3600);
-					setcookie('pass', $pass, time() + 365*24*3600);
+					setcookie('pseudo', $pseudo, time() + 365*24*3600, null, null, false, true);
+					setcookie('pass', $pass, time() + 365*24*3600, null, null, false, true);
 				}
 				
 				//redirection vers la liste des thèmes
