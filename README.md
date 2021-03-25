@@ -1,6 +1,8 @@
 # Projet-web-secu
 **Ecole**: IMT Atlantique.
 
+***par Bini Angui***
+
 Dans le cadre de ce projet, nous sommes partie d’un site web que j’ai développée en PHP sur laquelle j’ai exploré les possibles failles qu’elle pourrait contenir.
 
 L’application est un forum de discussion informatique. qui offre la possibilité de s’authentifier, de soumettre des sujets et desmessages.
